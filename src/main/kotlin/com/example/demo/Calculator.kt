@@ -24,6 +24,15 @@ class Calculator {
         return this.template(file, 1, calculatorStrategy)
     }
 
+    fun concatenate(file: String): Any {
+        val calculatorStrategy = object : CalculatorStrategy<String> {
+            override fun calculate(input: String, base: String): String {
+                return base + input
+            }
+        }
+        return this.template(file, "", calculatorStrategy)
+    }
+
     private fun <T> template(file: String, base: T, calculatorStrategy: CalculatorStrategy<T>): T {
         var result = base
         var br: BufferedReader? = null

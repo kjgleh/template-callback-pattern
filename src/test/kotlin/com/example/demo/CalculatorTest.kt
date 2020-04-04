@@ -31,4 +31,17 @@ internal class CalculatorTest {
         // Assert
         assertThat(actual).isEqualTo(24)
     }
+
+    @Test
+    fun concatenate() {
+        // Arrange
+        val resource = ClassPathResource("numbers")
+        val sut = Calculator()
+
+        // Act
+        val actual = sut.concatenate(resource.file.path)
+
+        // Assert
+        assertThat(actual).isEqualTo("1234")
+    }
 }
