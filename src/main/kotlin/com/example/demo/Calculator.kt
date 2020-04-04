@@ -7,12 +7,20 @@ import java.io.IOException
 class Calculator {
 
     fun calSum(file: String): Int {
-        val calculatorStrategy = SumCalculator()
+        val calculatorStrategy = object : CalculatorStrategy {
+            override fun calculate(input: Int, base: Int): Int {
+                return base + input
+            }
+        }
         return this.template(file, 0, calculatorStrategy)
     }
 
     fun calMultiply(file: String): Int {
-        val calculatorStrategy = MultiplyCalculator()
+        val calculatorStrategy = object : CalculatorStrategy {
+            override fun calculate(input: Int, base: Int): Int {
+                return base * input
+            }
+        }
         return this.template(file, 1, calculatorStrategy)
     }
 
