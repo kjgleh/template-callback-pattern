@@ -1,5 +1,5 @@
 package com.example.demo
 
-interface CalculatorStrategy {
-    fun calculate(input: Int, base: Int): Int
+interface CalculatorStrategy<T> {
+    fun calculate(input: String, base: T): T
 }
