@@ -7,38 +7,29 @@ import java.io.IOException
 class Calculator {
 
     fun calSum(file: String): Int {
-        var result = 0
-        var br: BufferedReader? = null
-
-        try {
-            br = File(file).bufferedReader()
-            br.forEachLine {
-                result += it.toInt()
-            }
-        } catch (e: IOException) {
-            throw e
-        } finally {
-            br?.close()
-        }
-
-        return result
+        val calculatorStrategy = SumCalculator()
+        return this.template(file, 0, calculatorStrategy)
     }
 
     fun calMultiply(file: String): Int {
-        var result = 1
+        val calculatorStrategy = MultiplyCalculator()
+        return this.template(file, 1, calculatorStrategy)
+    }
+
+    private fun template(file: String, base: Int, calculatorStrategy: CalculatorStrategy): Int {
+        var result = base
         var br: BufferedReader? = null
 
         try {
             br = File(file).bufferedReader()
             br.forEachLine {
-                result *= it.toInt()
+                result = calculatorStrategy.calculate(it.toInt(), result)
             }
         } catch (e: IOException) {
             throw e
         } finally {
             br?.close()
         }
-
         return result
     }
 }
