@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service
 
 @Service
 class ApiTemplate(
-    private val apiExecutor: SimpleApiExecutor,
-    private val exRateExtractor: SimpleExRateExtractor,
+    private val apiExecutor: ApiExecutor,
+    private val exRateExtractor: ExRateExtractor,
 ) {
 
     fun getForExRate(
